@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<Button android:id="@+id/addIntent"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="Add Action"
+			android:visibility="gone">
+		</Button>
+		<EditText android:id="@+id/input" android:lines="1"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:visibility="gone">
+		</EditText>
+	</LinearLayout>
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="Types Supported:" />
+	<Spinner android:id="@+id/typeSelect"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+	</Spinner>
+	<TextView android:id="@+id/actionLabel"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="Actions: " />
+	<Spinner android:id="@+id/intentSelect"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+	</Spinner>
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<Button android:id="@+id/fuzzSingle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Null Fuzz Single">
+		</Button>
+		<Button android:id="@+id/fuzzAll"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="Null Fuzz All">
+		</Button>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SystemApps Only"
+            android:id="@+id/onlySystemApps"
+            android:checked="false" />
+    </LinearLayout>
+	<EditText android:id="@+id/comp" android:lines="1"
+		android:visibility="gone" android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+	</EditText>
+	<ScrollView android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		>
+		<TextView android:id="@+id/output"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:text="" />
+	</ScrollView>
+</LinearLayout>
