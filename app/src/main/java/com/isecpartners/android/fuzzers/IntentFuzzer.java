@@ -15,6 +15,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageItemInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -46,6 +47,9 @@ public class IntentFuzzer extends Activity {
 	public String mCurrentType = null;
 	// list of ComponentNames for the current IPC type
 	public ArrayList<ComponentName> mKnownComponents = new ArrayList<ComponentName>();
+
+
+    private static final String TAG = "Null Intent Fuzzer";
 
 	/**
 	 * Mapping from ipcTypes to Strings for display. Overhead because you can't
@@ -122,8 +126,12 @@ public class IntentFuzzer extends Activity {
 						| PackageManager.GET_SERVICES)) {
 			PackageItemInfo items[] = null;
 
-            if(systemAppsOnly && (pi.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 1)
+            if( systemAppsOnly && (pi.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0){
+                Log.d(TAG, "Not system app" + pi.packageName);
                 continue;
+            }else {
+                Log.d(TAG, "System app: " + pi.packageName);
+            }
 
 			switch (type) {
 			case ACTIVITIES:
@@ -187,7 +195,7 @@ public class IntentFuzzer extends Activity {
         mSystemAppsOnly.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean systemAppsOnly) {
-                setKnownComponents(getExportedComponents(IPCType.BROADCASTS, systemAppsOnly));
+                updateComponents();
             }
         });
 		mIntentSpin.setAdapter(actionAA);
